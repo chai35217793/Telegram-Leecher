@@ -3,7 +3,7 @@ FROM python:3.12-slim
 # Update and install dependencies as root
 USER root
 RUN apt-get update && \
-    apt-get install -y ffmpeg aria2 gcc build-essential && \
+    apt-get install -y ffmpeg aria2 gcc build-essential git && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory

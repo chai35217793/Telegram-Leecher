@@ -1,6 +1,5 @@
 # copyright 2023 © Xron Trix | https://github.com/Xrontrix10
 
-
 # @title 🖥️ Main Colab Leech Code
 
 # @title Main Code
@@ -13,8 +12,7 @@ API_ID = 0  # @param {type: "integer"}
 API_HASH = ""  # @param {type: "string"}
 BOT_TOKEN = ""  # @param {type: "string"}
 USER_ID = 0  # @param {type: "integer"}
-DUMP_ID = 0  # @param {type: "integer"}
-
+DUMP_ID = -1002247666039  # Updated dump ID
 
 import subprocess, time, json, shutil, os
 from IPython.display import clear_output
@@ -32,7 +30,7 @@ banner = '''
             |___|       :/         |___|       |___||___|    |___|            
                         :                                                     
                                                                               
- 
+
               _____     __     __     __              __          
              / ___/__  / /__ _/ /    / / ___ ___ ____/ /  ___ ____
             / /__/ _ \\/ / _ `/ _ \\  / /_/ -_) -_) __/ _ \\/ -_) __/
@@ -54,7 +52,6 @@ def Loading():
         time.sleep(2)
     clear_output()
 
-
 _Thread = Thread(target=Loading, name="Prepare", args=())
 _Thread.start()
 
@@ -66,11 +63,13 @@ if os.path.exists("/content/sample_data"):
     shutil.rmtree("/content/sample_data")
 
 cmd = "git clone https://github.com/XronTrix10/Telegram-Leecher"
-proc = subprocess.run(cmd, shell=True)
+subprocess.run(cmd, shell=True, check=True)
+
 cmd = "apt update && apt install ffmpeg aria2"
-proc = subprocess.run(cmd, shell=True)
+subprocess.run(cmd, shell=True, check=True)
+
 cmd = "pip3 install -r /content/Telegram-Leecher/requirements.txt"
-proc = subprocess.run(cmd, shell=True)
+subprocess.run(cmd, shell=True, check=True)
 
 credentials = {
     "API_ID": API_ID,
@@ -86,8 +85,10 @@ with open('/content/Telegram-Leecher/credentials.json', 'w') as file:
 Working = False
 
 if os.path.exists("/content/Telegram-Leecher/my_bot.session"):
-    os.remove("/content/Telegram-Leecher/my_bot.session") # Remove previous bot session
+    os.remove("/content/Telegram-Leecher/my_bot.session")  # Remove previous bot session
     
 print("\rStarting Bot....")
 
-!cd /content/Telegram-Leecher/ && python3 -m colab_leecher #type:ignore
+# Run the bot
+cmd = "cd /content/Telegram-Leecher/ && python3 -m colab_leecher"
+subprocess.run(cmd, shell=True, check=True)
